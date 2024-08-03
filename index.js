@@ -5,8 +5,9 @@ const cors = require("cors");
 morgan.token('body', (req) => Object.keys(req.body).length > 0 ? JSON.stringify(req.body) : '');
 
 const app = express()
+app.use(express.static('dist'))
 app.use(express.json())
-app.use(cors("http://localhost:5173/"))
+app.use(cors())
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms :body'));
 
 let currentPersons = phonebook.phonebook;
